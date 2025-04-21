@@ -1,0 +1,40 @@
+// --- Type Imports ---
+import { Forecast } from "../../repository/WeatherRepository";
+
+export const mockForecast: Forecast = {
+    date: "2025-04-21",
+    date_epoch: 1745193600,
+    day: {
+      maxtemp_c: 20,
+      maxtemp_f: 68,
+      mintemp_c: 10,
+      mintemp_f: 50,
+      avgtemp_c: 15,
+      avgtemp_f: 59,
+      maxwind_mph: 10,
+      maxwind_kph: 16,
+      totalprecip_mm: 2,
+      totalprecip_in: 0.08,
+      totalsnow_cm: 0,
+      avgvis_km: 10,
+      avgvis_miles: 6,
+      avghumidity: 60,
+      daily_will_it_rain: 1,
+      daily_chance_of_rain: 80,
+      daily_will_it_snow: 0,
+      daily_chance_of_snow: 0,
+      condition: { text: "Partly cloudy", icon: "demo", code: 1003 },
+      uv: 5,
+    },
+    astro: {
+      sunrise: "06:00 AM",
+      sunset: "08:00 PM",
+      moonrise: "10:00 PM",
+      moonset: "08:00 AM",
+      moon_phase: "Waning Gibbous",
+      moon_illumination: 60,
+      is_moon_up: 1,
+      is_sun_up: 1,
+    },
+    hour: [],
+  };
