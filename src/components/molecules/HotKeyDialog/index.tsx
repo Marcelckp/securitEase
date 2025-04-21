@@ -17,7 +17,7 @@ import { useHotKey } from "../../../hooks/useHotKey";
 export const HotKeyDialog = () => {
   // --- State Variables ---
   const [, setCurrLocationData] = useAtom(locationAtom);
-  const [location /* setLocation */] = useState<string>("");
+  const [location, setLocation] = useState<string>("");
 
   // ---- UI States ----
   // const [loading, setLoading] = useState(false);
@@ -46,7 +46,11 @@ export const HotKeyDialog = () => {
   };
 
   return (
-    <dialog data-testid="location-dialog" style={{ padding: 0 }}>
+    <dialog
+      id="location-dialog"
+      data-testid="location-dialog"
+      style={{ padding: 0 }}
+    >
       <form
         method="dialog"
         style={{
@@ -92,8 +96,8 @@ export const HotKeyDialog = () => {
             boxSizing: "border-box",
             margin: "24px 0",
           }}
-        /> */}
-        {/* {location && location.trim() !== "" && (
+        />
+        {location && location.trim() !== "" && (
           <button
             type="submit"
             style={{
