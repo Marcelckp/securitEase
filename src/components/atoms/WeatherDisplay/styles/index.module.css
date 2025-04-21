@@ -1,0 +1,20 @@
+/* WeatherDisplay styles modularized from App.css */
+.weather-display {
+  font-size: 0.8rem;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  justify-content: center;
+}
+
+.weather-detail {
+  font-weight: 900;
+}
+
+.inverted-text {
+  mix-blend-mode: difference;
+  color: white; /* fallback for browsers that don't support blend modes */
+}
