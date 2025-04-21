@@ -23,6 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
+# Lock files
+package-lock.json
+
 # Assets
 *.pdf
 
