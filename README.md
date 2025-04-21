@@ -36,6 +36,7 @@ A production-ready weather application built with React, TypeScript, Vite, and T
 
 3. **Configure environment variables:**
 
+   - NOTE: The weather API offers future forecasting at a free price so I went with it.
    - Copy the `.env` file or create one in the project root with the following content:
 
      ```env
@@ -103,10 +104,8 @@ To install dependencies and start the dev server:
 
 ## To Do
 
-- Integrate WeatherStack API
-- Implement weather data UI and interactivity
-- Add tests for core features
-- Polish 3D visuals and UI/UX
+- Polish 3D visuals
+- Backwards and Forwards locations memory and caching for querying new location weather.
 
 ## License
 
