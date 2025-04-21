@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Load variables from .env file
 if [ -f .env ]; then
     export $(grep -E '^(ENV_NAME)=' .env | xargs)
@@ -31,7 +29,10 @@ fi
 # Build the Docker image
 docker build -t $IMAGE_NAME .
 
-# Run the Docker container
-docker run --rm -it --name $CONTAINER_NAME -p 3000:5173 -v $(pwd):/app -w /app -e NODE_ENV=development $IMAGE_NAME
+# Check if the image was built successfully
+docker run --rm -it --name $CONTAINER_NAME -p 3000:5173 \
+  -v $(pwd):/app \
+  -v /app/node_modules \
+  -w /app -e NODE_ENV=development $IMAGE_NAME
 
 echo "Container started. You can access the application at http://localhost:3000"

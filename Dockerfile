@@ -1,21 +1,20 @@
-# ======================================================================================================================
-# Stage 1: Build dev with an optimized image
+# Use official Node.js image
 FROM node:23-slim
 
+# Set working directory
 WORKDIR /app
 
+# Copy package.json and package-lock.json
 COPY package*.json ./
+
+# Install dependencies
 RUN rm -rf node_modules package-lock.json && npm install
 
+# Copy the rest of the application code
 COPY . .
 
-# Set the environment variable to production
+# Expose the port your app runs on (change if needed)
+EXPOSE 5173
+
+# Start the app in development mode
 CMD [ "npm", "run", "dev" ]
-
-# ======================================================================================================================
-# Stage 2: Serve the app with light weight and secure image and server - For future expansion
-# FROM nginx:alpine
-
-# COPY --from=builder /app/dist /app/dist
-# COPY --from=builder /app/package*.json /app/
-# COPY --from=builder /app/node_modules /app/node_modules
