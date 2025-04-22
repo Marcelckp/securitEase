@@ -14,6 +14,7 @@ import Snackbar from "@mui/material/Snackbar";
 import {
   CloudWeatherVisual,
   RainWeatherVisual,
+  SplineRain,
   SunWeatherVisual,
 } from "./components/meshes";
 
@@ -136,30 +137,12 @@ function App() {
   }, [error]);
 
   return (
-    <div className={styles.App} style={{ position: "relative", zIndex: 1 }}>
-      {/* Cloudy 3D Visual Canvas - full page, behind content */}
-      <Canvas
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100vw",
-          height: "100vh",
-          zIndex: -10,
-          pointerEvents: "none",
-          background: "transparent",
-        }}
-        camera={{ position: [0, 0, 5], fov: 75 }}
-      >
-        <ambientLight intensity={0.7} />
-        <directionalLight position={[5, 5, 5]} intensity={0.5} />
-        {isCloudy && <CloudWeatherVisual />}
-        {isRainy && <RainWeatherVisual />}
-        {isSunny && <SunWeatherVisual />}
-        {/* {isSnowy && <SnowWeatherVisual />} */}
-      </Canvas>
+    <>
       {loading && (
-        <div className={styles["app-loading-overlay"]} data-testid="app-loading-overlay">
+        <div
+          className={styles["app-loading-overlay"]}
+          data-testid="app-loading-overlay"
+        >
           <DotLottieReact
             aria-label="Loading animation"
             src="/clouds.lottie"
@@ -169,58 +152,81 @@ function App() {
           />
         </div>
       )}
-      <header className={styles["app-header"]}>
-        <h1 style={{ fontSize: "1rem" }}>
-          {location &&
-            [location.city, location.region].filter(Boolean).join(", ")}
-        </h1>
-      </header>
-      <main
-        style={{ filter: loading ? "blur(2px) grayscale(0.2)" : undefined }}
-      >
-        <label htmlFor="location-input" className={styles["sr-only"]}>
-          Location
-        </label>
-        <WeatherDisplay weather={selectedWeather} isRainy={isRainy} />
-        {!loading && (
-          <div className={styles["weather-grid"]}>
-            {days &&
-              days.map((day) => (
-                <div
-                  key={`${day.label}-${day.weather?.date_epoch}`}
-                  className={styles["fade-in"]}
-                >
-                  <WeatherEntity
-                    key={day.label}
-                    label={day.label}
-                    weather={day.weather}
-                    selected={selectedDay}
-                    onSelect={setSelectedDay}
-                  />
-                </div>
-              ))}
-          </div>
-        )}
-      </main>
-      <Snackbar
-        open={snackbarOpen && !!error}
-        autoHideDuration={6000}
-        onClose={() => setSnackbarOpen(false)}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      >
-        <Alert
-          onClose={() => setSnackbarOpen(false)}
-          severity="error"
-          sx={{ width: "100%" }}
+      <div className={styles.App} style={{ position: "relative", zIndex: 1 }}>
+        {/* Cloudy 3D Visual Canvas - full page, behind content */}
+        <Canvas
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            zIndex: -10,
+            pointerEvents: "none",
+            background: "transparent",
+          }}
+          camera={{ position: [0, 0, 5], fov: 75 }}
         >
-          {error}
-          <br />
-          Please refresh your browser or contact support if the problem
-          persists.
-        </Alert>
-      </Snackbar>
-      <HotKeyDialog />
-    </div>
+          <ambientLight intensity={0.7} />
+          <directionalLight position={[5, 5, 5]} intensity={0.5} />
+          {isCloudy && <CloudWeatherVisual />}
+          {isSunny && <SunWeatherVisual />}
+          {isRainy && <RainWeatherVisual />}
+          {/* {isSnowy && <SnowWeatherVisual />} */}
+        </Canvas>
+        <header className={styles["app-header"]}>
+          <h1 style={{ fontSize: "1rem" }}>
+            {location &&
+              [location.city, location.region].filter(Boolean).join(", ")}
+          </h1>
+        </header>
+        <main
+          style={{ filter: loading ? "blur(2px) grayscale(0.2)" : undefined }}
+        >
+          <label htmlFor="location-input" className={styles["sr-only"]}>
+            Location
+          </label>
+          <WeatherDisplay weather={selectedWeather} isRainy={isRainy} />
+          {!loading && (
+            <div className={styles["weather-grid"]}>
+              {days &&
+                days.map((day) => (
+                  <div
+                    key={`${day.label}-${day.weather?.date_epoch}`}
+                    className={styles["fade-in"]}
+                  >
+                    <WeatherEntity
+                      key={day.label}
+                      label={day.label}
+                      weather={day.weather}
+                      selected={selectedDay}
+                      onSelect={setSelectedDay}
+                    />
+                  </div>
+                ))}
+            </div>
+          )}
+        </main>
+        <Snackbar
+          open={snackbarOpen && !!error}
+          autoHideDuration={6000}
+          onClose={() => setSnackbarOpen(false)}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert
+            onClose={() => setSnackbarOpen(false)}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            {error}
+            <br />
+            Please refresh your browser or contact support if the problem
+            persists.
+          </Alert>
+        </Snackbar>
+        <HotKeyDialog />
+      </div>
+    </>
   );
 }
 
