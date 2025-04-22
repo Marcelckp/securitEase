@@ -17,7 +17,6 @@ export const WeatherEntity = ({
       })
     : "";
 
-  console.log(weather);
   return (
     <div className={styles["weather-grid"]} role="list">
       <button

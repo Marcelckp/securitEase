@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 export const useHotKey = () => {
     useEffect(() => {
         const handler = (e: KeyboardEvent) => {
-            console.log('Key pressed:', e.key);
             if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
                 e.preventDefault();
                 const dialog = document.getElementById(

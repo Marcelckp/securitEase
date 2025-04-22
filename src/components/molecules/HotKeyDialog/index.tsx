@@ -30,8 +30,6 @@ export const HotKeyDialog = () => {
     e.preventDefault();
     (document.getElementById("location-dialog") as HTMLDialogElement)?.close();
     if (location.trim() !== "") {
-      console.log(location.trim());
-
       // setLoading(true);
       const { data, error } = await globalErrorHandler(
         WeatherAPI.getUserLocation
