@@ -17,7 +17,7 @@ import { useHotKey } from "../../../hooks/useHotKey";
 export const HotKeyDialog = () => {
   // --- State Variables ---
   const [, setCurrLocationData] = useAtom(locationAtom);
-  const [location, setLocation] = useState<string>("");
+  const [location /*setLocation*/] = useState<string>("");
 
   // ---- UI States ----
   // const [loading, setLoading] = useState(false);
