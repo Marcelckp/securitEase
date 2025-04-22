@@ -14,7 +14,7 @@ import Snackbar from "@mui/material/Snackbar";
 import {
   CloudWeatherVisual,
   RainWeatherVisual,
-  SplineRain,
+  // SplineRain,
   SunWeatherVisual,
 } from "./components/meshes";
 
@@ -175,10 +175,12 @@ function App() {
           {/* {isSnowy && <SnowWeatherVisual />} */}
         </Canvas>
         <header className={styles["app-header"]}>
-          <h1 style={{ fontSize: "1rem" }}>
-            {location &&
-              [location.city, location.region].filter(Boolean).join(", ")}
-          </h1>
+          <div style={isSunny ? { mixBlendMode: "difference" } : {}}>
+            <h1 style={{ fontSize: "1rem" }}>
+              {location &&
+                [location.city, location.region].filter(Boolean).join(", ")}
+            </h1>
+          </div>
         </header>
         <main
           style={{ filter: loading ? "blur(2px) grayscale(0.2)" : undefined }}

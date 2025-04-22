@@ -24,11 +24,11 @@ const fragmentShader = `
     float angle = atan(dir.y, dir.x);
 
     // Ray effect: modulate brightness based on angle and distance
-    float rays = 0.5 + 0.5 * sin(20.0 * angle + time * 0.5);
+    float rays = 0.5 + 0.5 * sin(20.0 * angle + time * 0.9);
     float dist = length(dir);
 
     // Fade rays with distance
-    float intensity = smoothstep(0.0, 0.5, 1.0 - dist) * rays;
+    float intensity = smoothstep(0.0, 0.5, 3.0 - dist) * rays;
 
     // Sun core
     float sun = smoothstep(0.08, 0.0, dist);

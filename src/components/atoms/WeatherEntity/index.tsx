@@ -29,8 +29,8 @@ export const WeatherEntity = ({
         tabIndex={0}
       >
         <img src={weather?.day.condition.icon} />
-        <div>{formattedDate}</div>
-        <div>{weather && JSON.stringify(weather.day.avgtemp_c)}</div>
+        <div className="blend-text">{formattedDate}</div>
+        <div className="blend-text">{weather && weather.day.avgtemp_c}°C</div>
       </button>
     </div>
   );
