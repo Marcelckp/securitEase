@@ -24,7 +24,7 @@ describe("WeatherEntity", () => {
       screen.getByRole("button", { name: /show weather for today/i })
     ).toBeInTheDocument();
     // Check for the correct date, temperature, and icon based on mockForecast
-    expect(screen.getByText(String(mockForecast.day.avgtemp_c))).toBeInTheDocument();
+    expect(screen.getByText(`${mockForecast.day.avgtemp_c}°C`)).toBeInTheDocument();
     expect(screen.getByRole("img")).toHaveAttribute("src", mockForecast.day.condition.icon);
   });
 
